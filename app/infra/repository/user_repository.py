@@ -1,11 +1,11 @@
-from typing import Any, Callable
+from typing import Any
 from uuid import UUID, uuid1
 
 from app.infra.orm.models import User
 
 
 class UserRepository:
-    def __init__(self, db: Callable = User) -> None:
+    def __init__(self, db: User = User) -> None:
         self._db = db
     
     def create_user(self, user: Any) -> None:
@@ -49,3 +49,16 @@ class UserRepository:
             self._db.objects.get(id=id).delete()
         except self._db.DoesNotExist:
             raise Exception("Model instance doesn't exist")
+        
+    def reset_password(self, username: str, password: UUID) -> UUID:
+        success = False
+        msg = ""
+        try:
+            user = self._db.objects.get(username=username)
+            user.set_password(password)
+            user.save()
+            success = True
+            msg = "Um email foi enviado com a nova senha."
+        except self._db.DoesNotExist:
+            msg = "Usuário não cadastrado no sistema."
+        return success, msg
