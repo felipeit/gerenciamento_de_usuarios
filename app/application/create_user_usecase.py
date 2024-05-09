@@ -10,8 +10,8 @@ class Input(BaseModel):
     first_name: str
     last_name: str
     email: str
-    cpf: str
-    cnpj: str
+    cpf: str | None = None
+    cnpj: str | None = None
     address: str
     phone_number: str
     age: int
