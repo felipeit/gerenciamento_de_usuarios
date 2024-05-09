@@ -12,7 +12,6 @@ def test_create_user_with_data_correct() -> None:
         first_name="teste1",
         last_name="tests",
         email="yetine4743@facais.com",
-        cpf="722.833.710-74",
         cnpj="36.667.126/0001-61",
         address="St. M-Norte QNM 34 LOJA 219",
         phone_number="1140046446",
@@ -30,10 +29,9 @@ def test_create_user_with_data_incorrect() -> None:
         last_name="tests",
         email="yetine4743#facais.com",
         cpf="722.833.710-741",
-        cnpj="36.667.126/001-61",
         address="St. M-Norte QNM 34 LOJA 219",
         phone_number="1140046446",
         age=17
         )
     output = sut.execute(input)
-    assert len(output.errors) == 4
+    assert len(output.errors) == 3

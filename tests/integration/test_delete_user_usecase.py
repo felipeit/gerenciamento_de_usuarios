@@ -16,7 +16,6 @@ def test_delete_a_user() -> None:
         first_name="teste3",
         last_name="tests",
         email="yetine4743@facais.com",
-        cpf="722.833.710-74",
         cnpj="36.667.126/0001-61",
         address="St. M-Norte QNM 34 LOJA 219",
         phone_number="1140046446",

@@ -166,3 +166,15 @@ REST_FRAMEWORK = {
 # Pytest
 # https://pytest-django.readthedocs.io/en/latest/faq.html#how-can-i-use-manage-py-test-with-pytest-django
 TEST_RUNNER = 'app.infra.api.management.commands.pytest_to_test.PytestTestRunner'
+
+
+# email
+# https://docs.djangoproject.com/en/5.0/topics/email/
+#EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+EMAIL_HOST = '127.0.0.1'
+EMAIL_PORT = 25
+EMAIL_HOST_USER = 'noreply@testmakes.com'
+EMAIL_HOST_PASSWORD = 'teste'
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = False
