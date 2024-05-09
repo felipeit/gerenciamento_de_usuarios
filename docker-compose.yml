@@ -1,0 +1,36 @@
+services:
+    db:
+        image: postgres:latest
+        container_name: database
+        env_file: .env
+        restart: always
+        ports:
+            - "5432:5432"
+        volumes:
+            - /opt/applications/data_persistence/database/database:/var/lib/postgresql/data
+    api:
+        build: .
+        container_name: api
+        env_file: .env
+        restart: "on-failure"
+        #command: python manage.py runserver 0.0.0.0:8000
+        volumes:
+            - .:/application
+        depends_on:
+            - db
+        links:
+            - db
+        ports:
+            - "8000:8000"
+    dev_container:
+        build: .
+        container_name: app
+        env_file: .env
+        volumes:
+            - .:/application
+        depends_on:
+            - db
+        links:
+            - db
+        expose:
+            - "8080"
