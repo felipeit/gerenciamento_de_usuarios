@@ -11,11 +11,11 @@ class User:
             first_name: str, 
             last_name: str, 
             email: str, 
-            cpf: str, 
-            cnpj: str, 
             address: str, 
             phone_number: str, 
             age: int,
+            cnpj: str | None = None, 
+            cpf: str | None = None, 
     ) -> None:
         self.__id = uuid4()
         self.__first_name = first_name
@@ -27,6 +27,7 @@ class User:
         self.__phone_number = phone_number
         self.__age = age
         self.__active = True
+        self.__events = ["reset-password"]
         
     @staticmethod
     def create_instance( 
@@ -42,10 +43,10 @@ class User:
         if age < 18:
             errors.append(ValidationError("Idade não permitida"))
         validator_cpf = CPF()
-        if not validator_cpf.validate(cpf):
+        if cpf and not validator_cpf.validate(cpf):
             errors.append(ValidationError("CPF inválido"))
         validator_cnpj = CNPJ()
-        if not validator_cnpj.validate(cnpj):
+        if cnpj and not validator_cnpj.validate(cnpj):
             errors.append(ValidationError("CNPJ inválido"))
         if '@' not in email:
             errors.append(ValidationError("Email inválido"))
@@ -106,3 +107,6 @@ class User:
     @property
     def active(self) -> bool:
         return self.__active
+    
+    def get_events(self) -> list[str]:
+        return self.__events
