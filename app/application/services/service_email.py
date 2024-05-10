@@ -16,5 +16,21 @@ class SendEmailResetPasswordHandler:
                     IT support
             """,
             'remetente@example.com',
-            ['destinatario1@example.com', 'destinatario2@example.com'],
+            [event.data.email],
+        )
+
+class SendEmailNewUserHandler:
+    supported_events: list[str] = ["new-user"]
+
+    def run(self, event: GenericEvent) -> None:
+        send_mail(
+            'Seja bem vindo!',
+            f"""
+                Sr(a) {event.data.email}, sua senha é: {event.data.password}
+
+                att,
+                    IT support
+            """,
+            'remetente@example.com',
+            [event.data.email],
         )

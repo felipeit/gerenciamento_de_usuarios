@@ -65,3 +65,13 @@ class UserRepository:
             return self._db.objects.get(email=email)
         except self._db.DoesNotExist:
             return None
+    
+    def pre_create_user(self, input: Any) -> Any:
+        try:
+            user = self._db.objects.create_user(
+                id=input.id, 
+                email=input.email,
+                password=input.password
+            )
+        except Exception as err:
+            return f"Errors: {err}"
