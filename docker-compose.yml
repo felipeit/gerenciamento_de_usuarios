@@ -13,7 +13,7 @@ services:
         container_name: api
         env_file: .env
         restart: "on-failure"
-        #command: python manage.py runserver 0.0.0.0:8000
+        command: ["sh", "./config/run.sh"]
         volumes:
             - .:/application
         depends_on:
@@ -21,16 +21,4 @@ services:
         links:
             - db
         ports:
-            - "8000:8000"
-    dev_container:
-        build: .
-        container_name: app
-        env_file: .env
-        volumes:
-            - .:/application
-        depends_on:
-            - db
-        links:
-            - db
-        expose:
-            - "8080"
+            - "8000:80"
