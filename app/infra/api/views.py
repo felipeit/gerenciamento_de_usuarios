@@ -20,8 +20,8 @@ class UserViewSet(mixins.CreateModelMixin,
 
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    #permission_classes = (IsAuthenticated,)
-    authentication_classes = []
+    permission_classes = (IsAuthenticated,)
+
 
     def create(self, request, *args, **kwargs) -> Response:
         repository = UserRepository()
