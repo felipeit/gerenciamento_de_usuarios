@@ -31,5 +31,6 @@ RUN mkdir /application
 WORKDIR /application
 
 COPY pyproject.toml poetry.lock ./
+COPY env_example .env ./
 
 RUN poetry config virtualenvs.create false && poetry install
