@@ -21,8 +21,6 @@ def test_reset_password_user_usecase_with_success() -> None:
     sut1.execute(input_create)
     
     sut2 = ResetPassword(repo=repository)
-    input_resetpsswd = InputUsername(
-        username=f"{input_create.first_name}.{input_create.last_name}"
-    )
+    input_resetpsswd = InputUsername(email=input_create.email)
     output = sut2.execute(input=input_resetpsswd)
     assert output.id

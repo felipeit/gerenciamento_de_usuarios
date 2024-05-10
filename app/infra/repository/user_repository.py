@@ -1,7 +1,7 @@
 from typing import Any
 from uuid import UUID, uuid1
 
-from app.infra.orm.models import User
+from app.models import User
 
 
 class UserRepository:
@@ -20,7 +20,7 @@ class UserRepository:
             phone_number = user.phone_number,
             active = True,
             age = user.age,
-            username = f"{user.first_name}.{user.last_name}",
+            #username = f"{user.first_name}.{user.last_name}",
 
         )
         user.set_password(uuid1().hex)
@@ -39,7 +39,6 @@ class UserRepository:
                 phone_number = user.phone_number,
                 active = user.active,
                 age = user.age,
-                username = f"{user.first_name}.{user.last_name}",
             )
         except self._db.DoesNotExist:
             raise Exception("Model instance doesn't exist")
@@ -50,11 +49,11 @@ class UserRepository:
         except self._db.DoesNotExist:
             raise Exception("Model instance doesn't exist")
         
-    def reset_password(self, username: str, password: UUID) -> UUID:
+    def reset_password(self, email: str, password: UUID) -> UUID:
         success = False
         msg = ""
         try:
-            user = self._db.objects.get(username=username)
+            user = self._db.objects.get(email=email)
             user.set_password(password)
             user.save()
             success = True
@@ -62,3 +61,9 @@ class UserRepository:
         except self._db.DoesNotExist:
             msg = "Usuário não cadastrado no sistema."
         return success, msg
+    
+    def get_user_for_email(self, email: str) -> Any:
+        try:
+            return self._db.objects.get(email=email)
+        except self._db.DoesNotExist:
+            return None

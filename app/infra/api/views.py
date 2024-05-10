@@ -8,7 +8,7 @@ from app.application.delete_user_usecase import DeleteUser, Input as DeleteInput
 from app.application.reset_password_user_usecase import ResetPassword, Input as ResetInput
 from app.application.update_user_usecase import UpdateUser, Input as UpdateInput
 from app.infra.api.serializers import ResetPasswordSerializer, UserSerializer
-from app.infra.orm.models import User
+from app.models import User
 from app.infra.repository.user_repository import UserRepository
 
 
@@ -20,8 +20,8 @@ class UserViewSet(mixins.CreateModelMixin,
 
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    permission_classes = (IsAuthenticated,)
-
+    #permission_classes = (IsAuthenticated,)
+    authentication_classes = []
 
     def create(self, request, *args, **kwargs) -> Response:
         repository = UserRepository()
@@ -37,7 +37,7 @@ class UserViewSet(mixins.CreateModelMixin,
         )
         usecase = CreateUser(repo=repository)
         output = usecase.execute(input=input)
-        return Response({"user": output}, status=status.HTTP_201_CREATED)
+        return Response({"respose": output}, status=status.HTTP_201_CREATED)
     
 
     def update(self, request, *args, **kwargs) -> Response:
@@ -56,14 +56,14 @@ class UserViewSet(mixins.CreateModelMixin,
         )
         usecase = UpdateUser(repo=repository)
         output = usecase.execute(input=input)
-        return Response({"user": output})
+        return Response({"respose": output})
     
     def destroy(self, request, *args, **kwargs) -> Response:
         repository = UserRepository()
         input  = DeleteInput(id=request.data.get('id'))
         usecase = DeleteUser(repo=repository)
         output = usecase.execute(id=input.id)
-        return Response({"user": output}, status=status.HTTP_204_NO_CONTENT)
+        return Response({"respose": output}, status=status.HTTP_204_NO_CONTENT)
     
 
 class ResetPassowrdViewSet(mixins.CreateModelMixin, GenericViewSet):
@@ -73,8 +73,10 @@ class ResetPassowrdViewSet(mixins.CreateModelMixin, GenericViewSet):
     def create(self, request, *args, **kwargs) -> Response:
         repository = UserRepository()
         input  = ResetInput(
-            username=request.data.get('username')
+            email=request.data.get('email')
         )
         usecase = ResetPassword(repo=repository)
         output = usecase.execute(input=input)
-        return Response({"user": output})
+        if output:
+            return Response({"respose": output})
+        return Response({}, status=status.HTTP_404_NOT_FOUND)

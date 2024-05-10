@@ -8,9 +8,9 @@ class SendEmailResetPasswordHandler:
 
     def run(self, event: GenericEvent) -> None:
         send_mail(
-            'Reset de password',
+            'Reset de senha',
             f"""
-                Sr(a) {event.data.username}, sua nova senha é: {event.data.password}.
+                Sr(a) {event.data.email}, sua nova senha é: {event.data.password}
 
                 att,
                     IT support

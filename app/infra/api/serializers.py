@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from app.infra.orm.models import User
+from app.models import User
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -10,4 +10,4 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class ResetPasswordSerializer(serializers.Serializer):
-    username = serializers.CharField()
+    email = serializers.EmailField()

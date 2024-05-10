@@ -46,11 +46,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'app',
     'rest_framework',
     'drf_spectacular',
     'corsheaders',
     'rest_framework_simplejwt',
+    'app',
 ]
 
 MIDDLEWARE = [
@@ -162,6 +162,7 @@ REST_FRAMEWORK = {
     )
 }
 
+AUTH_USER_MODEL = "app.User"
 
 # Pytest
 # https://pytest-django.readthedocs.io/en/latest/faq.html#how-can-i-use-manage-py-test-with-pytest-django

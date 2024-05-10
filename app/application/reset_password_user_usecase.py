@@ -8,7 +8,7 @@ from app.application.services.service_email import SendEmailResetPasswordHandler
 from app.infra.repository.user_repository import UserRepository
 
 class Input(BaseModel):
-    username: str
+    email: str
     password: UUID = uuid4().hex
 
 class OutputSuccess(BaseModel):
@@ -24,7 +24,7 @@ class ResetPassword:
     
     @Dispatch(SendEmailResetPasswordHandler())
     def execute(self, input: Input) -> OutputSuccess:
-        success, msg = self._repo.reset_password(username=input.username, password=input.password)
+        success, msg = self._repo.reset_password(email=input.email, password=input.password)
         if success:
             return OutputSuccess(id=msg, events=["reset-password"])
         return OutputError(error=msg)
