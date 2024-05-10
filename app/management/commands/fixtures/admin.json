@@ -1,0 +1,11 @@
+{
+    "first_name": "Usuário",
+    "last_name": "Teste",
+    "email": "admin@admin.com",
+    "password": "admin",
+    "cnpj": "52829220000126",
+    "address": "HABIBS, Brasília - SEPN 505, Asa Norte",
+    "phone_number": "6130284618",
+    "active": true,
+    "age": 20
+}

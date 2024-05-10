@@ -30,7 +30,7 @@ class UpdateUser:
         self._repo = repo
 
     def execute(self, input: Input) -> OutputSuccess | OutputError:
-        user, errors = User.create_instance(
+        user, errors = User.update_instance(
             first_name=input.first_name, 
             last_name=input.last_name, 
             email=input.email, 

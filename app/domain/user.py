@@ -69,6 +69,43 @@ class User:
             return new_user, errors
         return None, errors
     
+    @staticmethod
+    def update_instance( 
+        first_name: str, 
+            last_name: str, 
+            email: str, 
+            cpf: str, 
+            cnpj: str, 
+            address: str, 
+            phone_number: str, 
+            age: int,
+            ) -> None:
+        errors = []
+        if age < 18:
+            errors.append(ValidationError("Idade não permitida"))
+        validator_cpf = CPF()
+        if cpf and not validator_cpf.validate(cpf):
+            errors.append(ValidationError("CPF inválido"))
+        validator_cnpj = CNPJ()
+        if cnpj and not validator_cnpj.validate(cnpj):
+            errors.append(ValidationError("CNPJ inválido"))
+        if '@' not in email:
+            errors.append(ValidationError("Email inválido"))
+        new_user =  User(
+            first_name=first_name, 
+            last_name=last_name, 
+            email=email, 
+            cpf=cpf, 
+            cnpj=cnpj, 
+            address=address, 
+            phone_number=phone_number, 
+            age=age,
+            password="",
+        )
+        if not errors:
+            return new_user, errors
+        return None, errors
+    
     @property
     def id(self) -> UUID:
         return self.__id
