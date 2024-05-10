@@ -23,7 +23,6 @@ class CreateUserSerializer(serializers.Serializer):
     age = serializers.IntegerField()
 
 class UpdateUserSerializer(serializers.Serializer):
-    id = serializers.UUIDField()
     first_name = serializers.CharField()
     last_name = serializers.CharField()
     email = serializers.EmailField()
@@ -36,6 +35,6 @@ class UpdateUserSerializer(serializers.Serializer):
 
 class DeleteUserSerializer(serializers.Serializer):
     id = serializers.UUIDField()
-    
+
 class ResetPasswordSerializer(serializers.Serializer):
     email = serializers.EmailField()

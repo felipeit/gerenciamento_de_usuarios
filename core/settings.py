@@ -166,7 +166,7 @@ AUTH_USER_MODEL = "app.User"
 
 # Pytest
 # https://pytest-django.readthedocs.io/en/latest/faq.html#how-can-i-use-manage-py-test-with-pytest-django
-TEST_RUNNER = 'app.infra.api.management.commands.pytest_to_test.PytestTestRunner'
+TEST_RUNNER = 'app.management.commands.pytest_to_test.PytestTestRunner'
 
 
 # email

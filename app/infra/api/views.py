@@ -60,7 +60,7 @@ class UserViewSet(mixins.CreateModelMixin,
     def update(self, request, *args, **kwargs) -> Response:
         repository = UserRepository()
         input  = UpdateInput(
-            id=request.data.get('id'),
+            id=kwargs.get('pk'),
             first_name=request.data.get('first_name'),
             last_name=request.data.get('last_name'),
             email=request.data.get('email'),

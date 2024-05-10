@@ -12,7 +12,7 @@ class Input(BaseModel):
     id: UUID = uuid4()
     email: str
     password: str
-    events: Literal['pre-register', 'new-user'] = 'pre-register'
+    events: Literal['pre-register', 'new-user', 'reset-password'] = 'pre-register'
 
 class OutputSuccess(BaseModel):
     id: UUID

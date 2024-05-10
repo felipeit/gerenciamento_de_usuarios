@@ -10,6 +10,7 @@ from app.infra.repository.user_repository import UserRepository
 class Input(BaseModel):
     email: str
     password: UUID = uuid4().hex
+    events: Literal['pre-register', 'new-user', 'reset-password'] = 'reset-password'
 
 class OutputSuccess(BaseModel):
     id: str | UUID

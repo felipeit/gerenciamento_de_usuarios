@@ -18,7 +18,7 @@ class Input(BaseModel):
     phone_number: str
     age: int
     password: str = uuid4().hex
-    events: Literal['pre-register', 'new-user'] = 'new-user'
+    events: Literal['pre-register', 'new-user', 'reset-password'] = 'new-user'
         
 class OutputSuccess(BaseModel):
     id: UUID
