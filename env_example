@@ -6,6 +6,6 @@ SECRET_KEY='django-insecure-vwvilq6ko9--vq9@j*oh06z+a#=*f+8r#k61(1d_hy=eq1q%0o'
 # https://hub.docker.com/_/postgres
 POSTGRES_HOST=db
 POSTGRES_PORT=5432
-POSTGRES_DB=fdme
-POSTGRES_USER=fdme
-POSTGRES_PASSWORD=fdme
+POSTGRES_DB=postgres
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=postgres
