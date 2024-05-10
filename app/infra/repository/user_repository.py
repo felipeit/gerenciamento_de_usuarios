@@ -8,22 +8,20 @@ class UserRepository:
     def __init__(self, db: User = User) -> None:
         self._db = db
     
-    def create_user(self, user: Any) -> None:
+    def create_user(self, input: Any) -> None:
         user = self._db.objects.create(
-            id = user.id,
-            first_name = user.first_name,
-            last_name = user.last_name,
-            email =  user.email,
-            cpf = user.cpf,
-            cnpj = user.cnpj,
-            address = user.address,
-            phone_number = user.phone_number,
+            id = input.id,
+            first_name = input.first_name,
+            last_name = input.last_name,
+            email =  input.email,
+            cpf = input.cpf,
+            cnpj = input.cnpj,
+            address = input.address,
+            phone_number = input.phone_number,
             active = True,
-            age = user.age,
-            #username = f"{user.first_name}.{user.last_name}",
-
+            age = input.age,
         )
-        user.set_password(uuid1().hex)
+        user.set_password(input.password)
         user.save()
 
     def update_user(self, id: UUID, user: Any) -> None:

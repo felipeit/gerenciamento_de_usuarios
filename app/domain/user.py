@@ -14,8 +14,9 @@ class User:
             address: str, 
             phone_number: str, 
             age: int,
+            password: str,
             cnpj: str | None = None, 
-            cpf: str | None = None, 
+            cpf: str | None = None,
     ) -> None:
         self.__id = uuid4()
         self.__first_name = first_name
@@ -26,8 +27,9 @@ class User:
         self.__address = address
         self.__phone_number = phone_number
         self.__age = age
+        self.__password = password
         self.__active = True
-        self.__events = ["reset-password"]
+        self.__events = ["reset-password", "new-user"]
         
     @staticmethod
     def create_instance( 
@@ -38,7 +40,9 @@ class User:
             cnpj: str, 
             address: str, 
             phone_number: str, 
-            age: int) -> None:
+            age: int,
+            password: str
+            ) -> None:
         errors = []
         if age < 18:
             errors.append(ValidationError("Idade não permitida"))
@@ -58,7 +62,8 @@ class User:
             cnpj=cnpj, 
             address=address, 
             phone_number=phone_number, 
-            age=age
+            age=age,
+            password=password
         )
         if not errors:
             return new_user, errors
@@ -107,6 +112,10 @@ class User:
     @property
     def active(self) -> bool:
         return self.__active
+    
+    @property
+    def password(self) -> str:
+        return self.__password
     
     def get_events(self) -> list[str]:
         return self.__events
