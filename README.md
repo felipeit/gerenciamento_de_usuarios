@@ -42,7 +42,11 @@ Este é um projeto de Sistema de Gerenciamento de Usuários desenvolvido em Djan
    docker compose up --build
    ```
 
-4. Acesse a documentação da API em: [http://localhost:8000/](http://localhost:8000/)
+4. Executar os tests
+   ```
+   docker exec api pytest -vv --cov
+   ```
+5. Acesse a documentação da API em: [http://localhost:8000/](http://localhost:8000/)
 
 ## Autor
 
