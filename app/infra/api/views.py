@@ -49,7 +49,7 @@ class UserViewSet(mixins.CreateModelMixin,
             phone_number=request.data.get('phone_number'),
             age=request.data.get('age')
         )
-        usecase = CreateUser(repo=repository)
+        usecase = CreateUser(repo_user=repository)
         output = usecase.execute(input=input)
         return Response({"respose": output}, status=status.HTTP_201_CREATED)
     
@@ -71,7 +71,7 @@ class UserViewSet(mixins.CreateModelMixin,
             age=request.data.get('age'),
             active=request.data.get('active')
         )
-        usecase = UpdateUser(repo=repository)
+        usecase = UpdateUser(repo_user=repository)
         output = usecase.execute(input=input)
         return Response({"respose": output})
     
@@ -82,7 +82,7 @@ class UserViewSet(mixins.CreateModelMixin,
     def destroy(self, request, *args, **kwargs) -> Response:
         repository = UserRepository()
         input  = DeleteInput(id=request.data.get('id'))
-        usecase = DeleteUser(repo=repository)
+        usecase = DeleteUser(repo_user=repository)
         output = usecase.execute(id=input.id)
         return Response({"respose": output}, status=status.HTTP_204_NO_CONTENT)
     
@@ -99,7 +99,7 @@ class ResetPassowrdViewSet(mixins.CreateModelMixin, GenericViewSet):
         input  = ResetInput(
             email=request.data.get('email')
         )
-        usecase = ResetPassword(repo=repository)
+        usecase = ResetPassword(repo_user=repository)
         output = usecase.execute(input=input)
         if output:
             return Response({"respose": output})
@@ -119,7 +119,7 @@ class PreRegisterViewSet(mixins.CreateModelMixin, GenericViewSet):
             email=request.data.get('email'),
             password=request.data.get('password')
         )
-        usecase = PreCreateUser(repo=repository)
+        usecase = PreCreateUser(repo_user=repository)
         output = usecase.execute(input=input)
         return Response({"respose": output})
         

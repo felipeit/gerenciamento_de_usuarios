@@ -20,6 +20,7 @@ class UserRepository:
             phone_number = input.phone_number,
             active = True,
             age = input.age,
+            image = input.image,
         )
         user.set_password(input.password)
         user.save()
@@ -37,6 +38,7 @@ class UserRepository:
                 phone_number = user.phone_number,
                 active = user.active,
                 age = user.age,
+                image = user.image
             )
         except self._db.DoesNotExist:
             raise Exception("Model instance doesn't exist")

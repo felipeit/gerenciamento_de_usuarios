@@ -1,3 +1,5 @@
+from asyncio import streams
+from email.mime import image
 from uuid import UUID, uuid4
 from django.forms import ValidationError
 from validate_docbr import CPF, CNPJ
@@ -15,6 +17,7 @@ class User:
             phone_number: str, 
             age: int,
             password: str,
+            image: str | None = None,
             cnpj: str | None = None, 
             cpf: str | None = None,
     ) -> None:
@@ -30,6 +33,7 @@ class User:
         self.__password = password
         self.__active = True
         self.__events = ["reset-password", "new-user"]
+        self.__image = image
         
     @staticmethod
     def create_instance( 
@@ -41,7 +45,8 @@ class User:
             address: str, 
             phone_number: str, 
             age: int,
-            password: str
+            password: str,
+            image: str
             ) -> None:
         errors = []
         if age < 18:
@@ -63,7 +68,8 @@ class User:
             address=address, 
             phone_number=phone_number, 
             age=age,
-            password=password
+            password=password,
+            image=image
         )
         if not errors:
             return new_user, errors
@@ -79,6 +85,7 @@ class User:
             address: str, 
             phone_number: str, 
             age: int,
+            image: str
             ) -> None:
         errors = []
         if age < 18:
@@ -101,6 +108,7 @@ class User:
             phone_number=phone_number, 
             age=age,
             password="",
+            image=image
         )
         if not errors:
             return new_user, errors
@@ -153,6 +161,10 @@ class User:
     @property
     def password(self) -> str:
         return self.__password
+    
+    @property
+    def image(self) -> str:
+        return self.__image
     
     def get_events(self) -> list[str]:
         return self.__events

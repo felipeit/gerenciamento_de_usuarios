@@ -5,6 +5,7 @@ from pydantic import BaseModel
 from app.application.services.mediator import Dispatch
 from app.application.services.service_email import SendEmailNewUserHandler
 from app.domain.user import User
+from app.infra.repository.cat_repository import CatRepository
 from app.infra.repository.user_repository import UserRepository
 
 
@@ -27,8 +28,9 @@ class OutputError(BaseModel):
     errors: list[Any] = field(default_factory=list)
 
 class CreateUser:
-    def __init__(self, repo: UserRepository) -> None:
-        self._repo = repo
+    def __init__(self, repo_user: UserRepository, repo_cat: CatRepository = CatRepository()) -> None:
+        self._repo_user = repo_user
+        self._repo_cat = repo_cat
     
     @Dispatch(SendEmailNewUserHandler())
     def execute(self, input: Input) -> OutputSuccess | OutputError:
@@ -42,8 +44,9 @@ class CreateUser:
             phone_number=input.phone_number, 
             age=input.age,
             password=input.password,
+            image=self._repo_cat.get_random_pic(),
         )
         if not errors:
-            self._repo.create_user(input=user)
+            self._repo_user.create_user(input=user)
             return OutputSuccess(id=user.id)
         return OutputError(errors=errors)

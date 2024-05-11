@@ -179,3 +179,6 @@ EMAIL_HOST_USER = 'noreply@testmakes.com'
 EMAIL_HOST_PASSWORD = 'teste'
 EMAIL_USE_TLS = False
 EMAIL_USE_SSL = False
+
+# https://thecatapi.com/
+API_THE_CAT = 'https://api.thecatapi.com/v1/images/search'

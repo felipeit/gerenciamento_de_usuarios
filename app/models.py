@@ -37,6 +37,7 @@ class User(PermissionsMixin, AbstractBaseUser):
     phone_number = models.CharField(max_length=12, blank=True, null=True)
     active = models.BooleanField(default=False)
     age = models.IntegerField(null=True)
+    image = models.URLField(null=True, blank=True)
 
     objects = EmailUserManager()
     USERNAME_FIELD = 'email'

@@ -3,6 +3,7 @@ from uuid import UUID
 from pydantic import BaseModel
 
 from app.domain.user import User
+from app.infra.repository.cat_repository import CatRepository
 from app.infra.repository.user_repository import UserRepository
 
 
@@ -26,8 +27,9 @@ class OutputError(BaseModel):
 
 
 class UpdateUser:
-    def __init__(self, repo: UserRepository) -> None:
-        self._repo = repo
+    def __init__(self, repo_user: UserRepository, repo_cat: CatRepository = CatRepository()) -> None:
+        self._repo_user = repo_user
+        self._repo_cat = repo_cat
 
     def execute(self, input: Input) -> OutputSuccess | OutputError:
         user, errors = User.update_instance(
@@ -38,9 +40,10 @@ class UpdateUser:
             cnpj=input.cnpj, 
             address=input.address, 
             phone_number=input.phone_number, 
-            age=input.age
+            age=input.age,
+            image=self._repo_cat.get_random_pic(),
         )
         if not errors:
-            self._repo.update_user(input.id, user)
+            self._repo_user.update_user(input.id, user)
             return OutputSuccess(id=input.id)
         return OutputError(errors=errors)
