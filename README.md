@@ -46,6 +46,8 @@ Este é um projeto de Sistema de Gerenciamento de Usuários desenvolvido em Djan
    ```
    docker exec api pytest -vv --cov
    ```
+   ![coverage](coverage-test.png)
+   
 5. Acesse a documentação da API em: [http://localhost:8000/](http://localhost:8000/)
 
 ## Autor
