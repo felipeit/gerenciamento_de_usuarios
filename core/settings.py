@@ -13,7 +13,9 @@ from datetime import timedelta
 import os
 from pathlib import Path
 import environ
-
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
+import django.db.models.signals
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -182,3 +184,20 @@ EMAIL_USE_SSL = False
 
 # https://thecatapi.com/
 API_THE_CAT = 'https://api.thecatapi.com/v1/images/search'
+
+# https://docs.sentry.io/platforms/python/integrations/django/
+sentry_sdk.init(
+    dsn=env('SENTRY_DSN'),
+    integrations=[
+        DjangoIntegration(
+            transaction_style='url',
+            middleware_spans=True,
+            signals_spans=True,
+            signals_denylist=[
+                django.db.models.signals.pre_init, 
+                django.db.models.signals.post_init,
+            ],
+            cache_spans=False,
+        ),
+    ],
+)

@@ -1,6 +1,7 @@
 #settings
 DEBUG=True
 SECRET_KEY='django-insecure-vwvilq6ko9--vq9@j*oh06z+a#=*f+8r#k61(1d_hy=eq1q%0o'
+SENTRY_DSN='https://1ec59b6f57ba478a9ea2e0c048e1ba4b@o987953.ingest.us.sentry.io/5945041'
 
 # database config
 # https://hub.docker.com/_/postgres

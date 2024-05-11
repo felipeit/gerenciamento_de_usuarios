@@ -15,7 +15,9 @@ Este é um projeto de Sistema de Gerenciamento de Usuários desenvolvido em Djan
 - **Tratamento de Erros:** Implementado de forma adequada em toda a API para lidar com exceções de forma eficiente.
 - **Programação Orientada a Objetos:** Utilizada para estruturar o código de forma mais organizada e reutilizável.
 - **Tipagem de Dados:** Utilizada para tornar o código mais legível e seguro, utilizando as funcionalidades de tipagem estática do Python.
+- **Sentry:** Plataforma de monitoramento de desempenho e de erros que ajuda os desenvolvedores a detectar, diagnosticar e corrigir problemas em seus aplicativos. A API está integrada com o Sentry para realizar o log e monitoramento de erros.
 - **Docker Compose:** Utilizado para automatizar a instalação e execução do projeto em um ambiente Dockerizado.
+
 
 ## Funcionalidades
 
@@ -24,7 +26,7 @@ Este é um projeto de Sistema de Gerenciamento de Usuários desenvolvido em Djan
 - **Reset de senha:** Permite resetar a senha do usuário com o recebimento de email.
 - **Testes:** Implementação de testes unitários e de integração para garantir a qualidade e funcionalidade da API.
 - **Integração com API Externa:** Implementação de integração com uma API externa para enriquecer os dados dos usuários.
-
+- **Log e monitoração:** Implementei o sentry para monitoramentro e log da aplicação.
 ## Como Executar o Projeto
 
 1. Clone este repositório:
