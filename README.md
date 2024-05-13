@@ -29,9 +29,6 @@ Este é um projeto de Sistema de Gerenciamento de Usuários desenvolvido em Djan
 - **Log e monitoração:** Implementei o sentry para monitoramentro e log da aplicação.
 
 ## Requisistos pra executar o projeto localmente
-Claro, posso te ajudar a adicionar a seção para executar o projeto localmente. Aqui está uma sugestão de como você pode fazer isso:
-
-Claro, vou adicionar o MySQL aos requisitos para executar o projeto localmente. Aqui está a seção atualizada:
 
 ## Requisitos para executar o projeto localmente
 
