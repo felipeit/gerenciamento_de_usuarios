@@ -87,7 +87,7 @@ Depois de ter instalado os requisitos necessários, siga as etapas abaixo para e
    ```
 
 ## Requisistos pra executar o projeto com Docker
-1. [Docker](https://docs.docker.com/desktop/install/linux-install/)
+1. [Docker](https://docs.docker.com/engine/install/ubuntu/)
 2. [Docker Compose V2](https://docs.docker.com/compose/install/linux/)
 
 ```
