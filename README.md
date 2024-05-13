@@ -28,7 +28,6 @@ Este é um projeto de Sistema de Gerenciamento de Usuários desenvolvido em Djan
 - **Integração com API Externa:** Implementação de integração com uma API externa para enriquecer os dados dos usuários.
 - **Log e monitoração:** Implementei o sentry para monitoramentro e log da aplicação.
 
-## Requisistos pra executar o projeto localmente
 
 ## Requisitos para executar o projeto localmente
 
@@ -81,6 +80,11 @@ Depois de ter instalado os requisitos necessários, siga as etapas abaixo para e
    ```
 
 7. Acesse a aplicação em seu navegador em: [http://localhost:8000/](http://localhost:8000/)
+
+8. Executar os tests
+   ```
+   python manage.py test
+   ```
 
 ## Requisistos pra executar o projeto com Docker
 1. [Docker](https://docs.docker.com/desktop/install/linux-install/)
