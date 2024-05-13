@@ -71,7 +71,7 @@ Depois de ter instalado os requisitos necessários, siga as etapas abaixo para e
 
 5. Crie um superusuário para acessar o painel de administração:
    ```
-   python manage.py createsuperuser
+   python manage.py initial_user
    ```
 
 6. Inicie o servidor de desenvolvimento:
