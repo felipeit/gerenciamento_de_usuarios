@@ -14,7 +14,7 @@ services:
         container_name: api
         environment:
             - SECRET_KEY='123456'
-            - SENTRY_DSN=foo
+            - SENTRY_DSN=https://1ec59b6f57ba478a9ea2e0c048e1ba4b@o987953.ingest.us.sentry.io/5945041
             - MYSQL_ROOT_HOST=db
             - MYSQL_DATABASE=mysql
             - MYSQL_USER=root
