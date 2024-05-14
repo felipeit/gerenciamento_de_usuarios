@@ -1,5 +1,5 @@
 from django.forms import ValidationError
-from app.domain.user import User
+from src.domain.user import User
 
 
 async def test_create_instance_valid_data() -> None:

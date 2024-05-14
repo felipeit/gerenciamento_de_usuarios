@@ -5,38 +5,15 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Python Debugger: Django",
-            "type": "debugpy",
+            "name": "Python Debugger: FastAPI",
+            "type": "python",
             "request": "launch",
+            "module": "uvicorn",
             "args": [
-                "runserver"
+                "src.infra.api.views:app",
+                "--reload"
             ],
-            "django": true,
-            "autoStartBrowser": false,
-            "program": "${workspaceFolder}/manage.py"
-        },
-        {
-            "name": "Python Tests: Django",
-            "type": "debugpy",
-            "request": "launch",
-            "args": [
-                "test"
-            ],
-            "django": true,
-            "autoStartBrowser": false,
-            "program": "${workspaceFolder}/manage.py"
-        },
-        ,
-        {
-            "name": "Python Tests Coverage: Django",
-            "type": "debugpy",
-            "request": "launch",
-            "args": [
-                "test", "--cov"
-            ],
-            "django": true,
-            "autoStartBrowser": false,
-            "program": "${workspaceFolder}/manage.py"
+            "jinja": true
         }
     ]
 }

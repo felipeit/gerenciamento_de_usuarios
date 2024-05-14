@@ -1,13 +1,11 @@
 from uuid import uuid4
 
 import pytest
-from app.application.create_user_usecase import CreateUser, Input
-from app.application.delete_user_usecase import DeleteUser
-from app.infra.repository.user_repository import UserRepository
-from django.db import transaction
+from src.application.create_user_usecase import CreateUser, Input
+from src.application.delete_user_usecase import DeleteUser
+from src.infra.repository.user_repository import UserRepository
 
 
-@pytest.mark.django_db(transaction=False)
 def test_delete_a_user() -> None:
     repository = UserRepository()
     sut1 = CreateUser(repo=repository)
@@ -25,7 +23,6 @@ def test_delete_a_user() -> None:
     output = sut2.execute(uuid_user.id)
     assert output.id
     
-@pytest.mark.django_db(transaction=False)
 def test_try_delete_a_user_with_incorrect_uuid() -> None:
     repository = UserRepository()
     sut = DeleteUser(repo=repository)

@@ -1,11 +1,10 @@
 from uuid import UUID
 import pytest
-from app.application.create_user_usecase import CreateUser, Input
-from app.application.reset_password_user_usecase import ResetPassword, Input as InputUsername
-from app.infra.repository.user_repository import UserRepository
+from src.application.create_user_usecase import CreateUser, Input
+from src.application.reset_password_user_usecase import ResetPassword, Input as InputUsername
+from src.infra.repository.user_repository import UserRepository
 
 
-@pytest.mark.django_db(transaction=False)
 def test_reset_password_user_usecase_with_success() -> None:
     repository = UserRepository()
     sut1 = CreateUser(repo=repository)

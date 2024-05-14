@@ -1,10 +1,8 @@
 import pytest
-from app.application.create_user_usecase import CreateUser, Input
-from app.infra.repository.user_repository import UserRepository
-from django.db import transaction
+from src.application.create_user_usecase import CreateUser, Input
+from src.infra.repository.user_repository import UserRepository
 
 
-@pytest.mark.django_db(transaction=False)
 def test_create_user_with_data_correct() -> None:
     repository = UserRepository()
     sut = CreateUser(repo=repository)
@@ -19,8 +17,7 @@ def test_create_user_with_data_correct() -> None:
         )
     output = sut.execute(input)
     assert output.id
-
-@pytest.mark.django_db(transaction=False)
+    
 def test_create_user_with_data_incorrect() -> None:
     repository = UserRepository()
     sut = CreateUser(repo=repository)

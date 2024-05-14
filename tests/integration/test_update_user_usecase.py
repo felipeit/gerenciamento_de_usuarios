@@ -1,10 +1,9 @@
 import pytest
-from app.application.create_user_usecase import CreateUser, Input as InputOutId
-from app.application.update_user_usecase import UpdateUser, Input
-from app.infra.repository.user_repository import UserRepository
+from src.application.create_user_usecase import CreateUser, Input as InputOutId
+from src.application.update_user_usecase import UpdateUser, Input
+from src.infra.repository.user_repository import UserRepository
 
 
-@pytest.mark.django_db(transaction=False)
 def test_update_user_usecase_with_data_correct() -> None:
     repository = UserRepository()
     sut1 = CreateUser(repo=repository)
@@ -37,7 +36,6 @@ def test_update_user_usecase_with_data_correct() -> None:
     assert output.id
 
     
-@pytest.mark.django_db(transaction=False)
 def test_update_user_usecase_with_data_incorrect() -> None:
     repository = UserRepository()
     sut1 = CreateUser(repo=repository)
